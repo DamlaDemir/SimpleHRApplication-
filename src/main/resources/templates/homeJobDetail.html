@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="homepage_content" class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Box Comment -->
+            <div class="box box-widget">
+                <div class="box-header with-border">
+                    <div class="user-block">
+                        <img class="img-circle" src="../dist/img/images.jpg" alt="User Image">
+                        <span class="username"><a href="#" th:text="${jobListingDetail.jobTitle}" ></a></span>
+                        <span class="description" th:text="${jobListingDetail.lastApplicationDate}"></span>
+                    </div>
+                    <!-- /.user-block -->
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
+                            <i class="fa fa-circle-o"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <!-- post text -->
+                    <p th:text="${jobListingDetail.jobDescription}"></p>
+
+                    <p th:text="'İşe alıncak kişi sayısı: ' + ${jobListingDetail.numberOfPeople}">
+                    </p>
+                </div>
+
+                <section class="content">
+                    <div class="row">
+                        <!-- left column -->
+                        <div class="col-md-6">
+                            <!-- general form elements -->
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Başvuru Formu</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <form role="form" th:action="@{/homeJobDetail/}+${jobListingDetail.id}" th:object="${applicant}" th:method="post">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="labelName">İsim:</label>
+                                            <input type="text" class="form-control" th:field="*{name}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="labelEmail">Email:</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" th:field="*{email}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="labelPhone">Telefon</label>
+                                            <input type="text" class="form-control" th:field="*{phone}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="labelAdress" >Adres:</label>
+                                                <textarea class="form-control" rows="4" th:field="*{address}"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="labelThoughtsOnJob" >İş üzerindeki düşünceler:</label>
+                                                <textarea class="form-control" rows="5" th:field="*{thoughtsOnJob}"></textarea>
+                                        </div>
+
+
+                                    </div>
+                                    <!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-primary">BAŞVUR</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+
+</section>
+<!-- /.row -->
+</body>
+</html>

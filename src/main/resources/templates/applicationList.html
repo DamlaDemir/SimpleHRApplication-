@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layoutAdmin}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="page_content" class="content">
+
+    <div class="row" th:each="jobListing : ${jobListings}">
+        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h2 th:text="${jobListing.applicants.size()}+' Başvuru'"></h2>
+
+                    <p th:text="${jobListing.jobTitle}"></p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="#" class="small-box-footer" th:href="@{/getApplicationListDetail/}+${jobListing.id}">
+                    Başvuruları gör <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <!-- ./col -->
+    </div>
+
+</section>
+
+</body>
+</html>

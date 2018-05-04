@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="homepage_content" class="content">
+    <!-- row -->
+    <table>
+        <tr th:each="jobListing : ${jobListings}">
+            <td>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- The time line -->
+                        <ul class="timeline">
+                            <!-- timeline time label -->
+
+                            <!-- /.timeline-label -->
+                            <!-- timeline item -->
+                            <li>
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fa fa-clock-o" th:text="${jobListing.lastApplicationDate}" ></i></span>
+
+                                    <h3 class="timeline-header"><a href="#" th:text="${jobListing.jobTitle}"></a></h3>
+
+                                    <div class="timeline-body" th:text="${jobListing.jobDescription.substring(0,250)}+'..'">
+
+                                    </div>
+                                    <div class="timeline-footer">
+                                        <a class="btn btn-primary btn-xs" th:href="@{/homeJobDetail/}+${jobListing.id}">Read more</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+</section>
+
+</body>
+</html>
+

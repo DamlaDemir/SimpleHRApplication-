@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layoutAdmin}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section layout:fragment="page_content">
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> İş İlanı Ekle</h3>
+        </div>
+        <form method="post" th:action="@{/addJobListing}" th:object="${jobListing}" class="form-horizontal">
+            <div class="box-body">
+
+                <div class="form-group">
+                    <label for="labelJobTitle" class="col-sm-2 control-label" style="font-size:17px;" >İş Başlığı:</label>
+                    <div class="col-sm-10">
+                        <input name="jobTitle" type="text" class="form-control" th:field="*{jobTitle}">
+                        <h4 th:if="${#fields.hasErrors('jobTitle')}" th:errors="*{jobTitle}" style="color: darkred;"> </h4>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="labelJobDescription" class="col-sm-2 control-label" style="font-size:17px;">İş Tanımı:</label>
+                    <div class="col-sm-10">
+                    <textarea class="form-control" rows="10"  th:field="*{jobDescription}" ></textarea>
+                        <h4 th:if="${#fields.hasErrors('jobDescription')}" th:errors="*{jobDescription}" style="color: darkred;"> </h4>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="labelNumberOfPeople" class="col-sm-2 control-label" style="font-size:17px;">İşe Alınacak Kişi Sayısı</label>
+                    <div class="col-sm-10">
+                        <input name="numberOfPeople" type="text" class="form-control"  th:field="*{numberOfPeople}">
+                        <h4 th:if="${#fields.hasErrors('numberOfPeople')}" th:errors="*{numberOfPeople}" style="color: darkred;"> </h4>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="labelLastApplicationDate" class="col-sm-2 control-label" style="font-size:17px;">Son Başvuru Tarihi:</label>
+                    <div class="col-sm-10">
+                    <input type="date" class="form-control"  name="lastAppDate" id="lastAppDate" th:field="*{lastApplicationDate}">
+                        <h4 th:if="${#fields.hasErrors('lastApplicationDate')}" th:errors="*{lastApplicationDate}" style="color: darkred;"> </h4>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-info pull-right" > İş İlanı Ekle</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+</body>
+</html>
